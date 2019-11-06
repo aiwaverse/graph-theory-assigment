@@ -15,11 +15,11 @@ Graph::Graph(int dim) {
 }
 
 int& Graph::operator()(int x, int y) {
-    return adjacency.at(x).at(y);
+    return adjacency[x][y];
 }
 
 std::vector<int>& Graph::operator()(int x) {
-    return adjacency.at(x);
+    return adjacency[x];
 }
 
 std::ostream& operator<<(std::ostream& os, const Graph& rhs) {
@@ -51,7 +51,7 @@ std::vector<int> Graph::generate_msa(void) {
         minimum = std::numeric_limits<int>::max();
         for (const auto index : to_search) {
             for (int j{1}; j < dimensions; ++j) {
-                auto curr = (*this)(index,j);
+                auto curr = (*this)(index,j);   //same as this->operator()(index,j) or even adjacency.at(index).at(j)
                 if ((curr < minimum) and (curr != -1)) {
                     if (std::find(to_search.begin(), to_search.end(), j) != to_search.end())    //if j is already on to_search, goes to next iteration
                         continue;

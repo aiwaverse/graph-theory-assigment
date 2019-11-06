@@ -51,7 +51,7 @@ std::vector<int> Graph::generate_msa(void) {
         minimum = std::numeric_limits<int>::max();
         for (const auto index : to_search) {
             for (int j{1}; j < dimensions; ++j) {
-                auto curr = this->operator()(index,j);
+                auto curr = (*this)(index,j);
                 if ((curr < minimum) and (curr != -1)) {
                     if (std::find(to_search.begin(), to_search.end(), j) != to_search.end())    //if j is already on to_search, goes to next iteration
                         continue;

@@ -22,10 +22,6 @@ int main(int argc, char* argv[]){
     std::cout << "Please enter data:" << std::endl;
     test.read_keyboard_to_graph();
     std::cout << test;
-    int searchx{};
-    int searchy{};
-    std::cout << "Enter search" << std::endl;;
-    std::cin >> searchx >> searchy;
-    std::cout << test(searchx,searchy) << std::endl;
+    std::cout << test.minimum_biforest() << std::endl;
     return 0;
 }

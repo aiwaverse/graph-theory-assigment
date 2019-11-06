@@ -1,6 +1,7 @@
 #include "../include/graph.hpp"
 #include <iostream>
 #include <sstream>
+#include <set>
 #include <string>
 
 Graph::Graph(int dim) {
@@ -44,7 +45,7 @@ void Graph::read_keyboard_to_graph(void) {
 
 std::vector<int> Graph::generate_msa(void) {
     std::vector<int> msa{};
-    std::vector<int> to_search{0};
+    std::set<int> to_search{0};
     int minimum{std::numeric_limits<int>::max()};
     int to_add{};
     for (int i{1}; i < dimensions; ++i) {   //the first vertice is the always the root
@@ -53,7 +54,7 @@ std::vector<int> Graph::generate_msa(void) {
             for (int j{1}; j < dimensions; ++j) {
                 auto curr = (*this)(index,j);   //same as this->operator()(index,j) or even adjacency.at(index).at(j)
                 if ((curr < minimum) and (curr != -1)) {
-                    if (std::find(to_search.begin(), to_search.end(), j) != to_search.end())    //if j is already on to_search, goes to next iteration
+                    if (to_search.find(j) != to_search.end())    //if j is already on to_search, goes to next iteration
                         continue;
                     minimum = curr;
                     to_add = j;
@@ -61,7 +62,7 @@ std::vector<int> Graph::generate_msa(void) {
             }
         }
         msa.push_back(minimum);
-        to_search.push_back(to_add);
+        to_search.insert(to_add);
     }
     return msa;
 }

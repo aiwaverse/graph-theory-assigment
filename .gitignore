@@ -93,5 +93,7 @@ obj/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+test.txt
+output.txt
 
 # End of https://www.gitignore.io/api/c,c++,codeblocks,visualstudiocode

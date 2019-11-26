@@ -96,5 +96,7 @@ obj/
 test.txt
 output.txt
 output_test.txt
+teste*
+respostas.txt
 
 # End of https://www.gitignore.io/api/c,c++,codeblocks,visualstudiocode

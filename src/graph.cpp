@@ -6,15 +6,15 @@
 
 // the single constructor
 Graph::Graph(int dim) {
+    if(dim < 0)
+        throw std::runtime_error("Negative number of vertices\n");
     // this really does not work with a negative value
-    if (dim > 0) {
-        dimensions = dim;
-        adjacency.resize(dim);
-        for (auto& subv : adjacency) {
-            subv.resize(dim);
-            // -2 for no good reason, it's an invalid number, made sense to me to start with invalid numbers
-            std::fill(subv.begin(), subv.end(), -2);
-        }
+    dimensions = dim;
+    adjacency.resize(dim);
+    for (auto& subv : adjacency) {
+        subv.resize(dim);
+        // -2 for no good reason, it's an invalid number, made sense to me to start with invalid numbers
+        std::fill(subv.begin(), subv.end(), -2);
     }
 }
 
@@ -53,7 +53,7 @@ void Graph::read_keyboard_to_graph(void) {
 std::vector<int> Graph::generate_msa(void) {
     std::vector<int> msa{};
     // this basically is to avoid the wrong number bug
-    if (dimensions <= 0)
+    if (dimensions == 0)
         return msa;
     std::set<int> to_search{0};  // i used a set to reduce find time, starts with the 0 index (first vertice)
     int minimum{std::numeric_limits<int>::max()};
